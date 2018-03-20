@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
       table.increments();
       table.timestamp('createdAt').notNullable().defaultTo(knex.raw('now()'));
       table.string('username').unique().notNullable();
-      table.string('passowrd').notNullable();
+      table.string('password').notNullable();
   });
 };
 

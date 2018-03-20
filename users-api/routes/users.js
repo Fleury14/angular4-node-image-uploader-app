@@ -10,20 +10,22 @@ router.post('/user', async (req, res) => {
         // create salt and hash password
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(req.body.password, salt);
-
+        console.log('Executing query');
         // execute the sql query
         const user = await knex('users')
             .insert({ username: req.body.username, password: hash})
             .returning('*');
-
+        console.log('Query executes, res.json successing...');
         // return success
-        res.json({ success: true, token: encode(user[0])})
+        res.json({ success: true, token: encode(user[0]) });
     } catch (err) {
         res.status(500).json({ success: false, errorMessage: err })
     }
 });
 
 function encode(user) {
+    console.log('encoding function called');
+    console.log('env test', process.env.TOKEN_SECRET);
     const token = {
         exp: moment().add(7, 'days').unix(),
         iat: moment().unix(),

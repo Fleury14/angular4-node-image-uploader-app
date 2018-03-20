@@ -32,6 +32,8 @@ services:
      - '3000:3000'
     environment:
      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users
+     - NODE_ENV=${NODE_ENV}
+     - TOKEN_SECRET=ICzX8uISDW9Bv2ZcsPUbeZx8tpVa6ajS
     depends_on:
       users-db:
         condition: service_healthy
