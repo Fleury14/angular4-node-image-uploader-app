@@ -52,10 +52,10 @@ services:
      - DATABASE_URL=postgres://postgres:postgres@images-db:5432/images
      - NODE_ENV=${NODE_ENV}
      - TOKEN_SECRET=change_to_secret_token
-     - S3_ACCESS_KEY=enter_your_access_key
-     - S3_SECRET_KEY=enter_your_secret_key
-     - S3_REGION=us-east-2
-     - S3_IMAGE_BUCKET=angular4-image-uploads
+     - S3_ACCESS_KEY=AKIAJV4T6NZL3CLPV7FA
+     - S3_SECRET_KEY=D3QVjxHk070C3/VSEWskJhI1pRgNAzeMXujshwuO
+     - S3_REGION=us-east-1
+     - S3_IMAGE_BUCKET=my-bucket-wins-this-round
     depends_on:
       images-db:
         condition: service_healthy

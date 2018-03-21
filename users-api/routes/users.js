@@ -73,7 +73,8 @@ function decode(token, callback) {
     }
 }
 
-function isAuthenticated(res, res, next) {
+function isAuthenticated(req, res, next) {
+    console.log('Authentication check initiated...');
     if ( !(req.headers && req.headers.authorization) ) {
         return res.status(401).json({ errorMessage: 'Unauthorized' });
     }
@@ -81,12 +82,15 @@ function isAuthenticated(res, res, next) {
     const token = req.headers.authorization;
     decode(token, async (err, payload) => {
         try {
+            console.log('decoding token...');
             if (err) {
                 return res.status(401).json({ errorMessage: 'Token expired' });
             }
 
-            const user = await knex('users').where({ id: parseInt(payload.sub, 10)});
+            const user = await knex('users').where({ id: parseInt(payload.sub, 10)}).first();
+            console.log('Token decoded: ', user);
             req.user = user.id;
+            console.log('Authorization passes, req.user:', req.user);
             return next();
 
         } catch (err) {
