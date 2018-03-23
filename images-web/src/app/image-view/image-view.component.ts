@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-image-view',
     templateUrl: './image-view.component.html',
-    styleUrls: ['./image-view-component.css']
+    styleUrls: ['./image-view.component.css']
 })
 
 export class ImageViewComponent implements OnInit {
